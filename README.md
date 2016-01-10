@@ -1,50 +1,65 @@
+## Prepare data from published salmonid maps ##
 Run all commands from the main directory
 
-1. Preformatting S. fontinalis 
-File 'batch1.fa' can be downloaded from `*.com`
-Put the file 'batch1.fa' in 00_resources/
+### 1. Collect linkage maps used in analysis ###
+a) Follow instructions in the `00_resources/data_sources.md` to collect published map data used in manuscript. Save input files to `02_raw_data/`  
 
-1. Remove the newline character to put all on same line
+b) Collect data from current paper (*Salvelinus fontinalis*)  
 
-``perl -pe 's/]\n/]\t/g' batch1.fa > 00_resources/batch1_formatted.fa``
+* Download file 'batch1.fa' from `*.com` (*update link*) and put in `00_resources/`
 
-2. Run the following R script to retain a single allele 0 record per marker
+* Pre-format `batch1.fa` into a tab delimited file all on one line by running the following command:
 
-'01_scripts/01_Sfon_marker_prep.R'
+``perl -pe 's/]\n/]\t/g' 00_resources/batch1.fa > 00_resources/batch1_formatted.txt``
+
+### 2. Retain one sequence (allele 0) per marker in 'batch_formatted.txt' ###
+
+```
+R -q -e 'source("01_scripts/01_Sfon_marker_prep.R")'
+
+```
 
 This will produce the file '02_raw_data/sutherland_etal-GBS_loci_complete.txt'
 
-3. Collect all of the online files used in the manuscript as listed in 
+### 3. Format all downloaded genetic maps to prepare for MapComp ###
 
-`00_resources/data_sources.md` 
+* Format data in R
 
-and put the downloaded files in 02_raw_data/
+```
+R -q -e 'source("01_scripts/02_map_collect_and_format.R")'
 
-4. Use the following R script to format all of the different downloaded genetic maps (from step 2 and 3 above) to prepare for MapCom
+```
 
-``02_map_collect_and_format.R``
+* Move prepared files to new directory
 
-Then run the following to move the prepared output files:
-``mv *_merged_sorted_clean.csv 02_raw_data/          02_merged_sorted_clean/
+```
+mv ./*_merged_sorted_clean.csv 02_raw_data/02_merged_sorted_clean/
 
+```
 
-5. Clean the final merged data and concatenate 
+* Minor cleaning and concatenate all datafiles  
 
 ```
 sed 's/\"//g' 02_raw_data/02_merged_sorted_clean/*merged_sorted_clean.csv > 02_raw_data/all_species.csv 
+
 ```
 
-This final file is used to input into the next R script
+### 4. Find total position within linkage group ### 
 
-6. Run the following R script
+Run the following script on `02_raw_data/all_species.csv`
 
-7. Translate the .csv file to .fasta file 
+```
+R -q -e 'source("01_scripts/03_LG_totpos.R")'
+
+```
+
+### 5. Translate .csv to .fasta 
 
 ```
 awk -F, 'BEGIN{OFS="";} {print $1"_"$2"_"$3"_"$4"_"$5"\n"$6}' 02_raw_data/*_totpos.csv > 03_prepared_data/all_species_w_totpos.fasta
 
 ```
 
-# fasta record name will be in this order: sp_lg_pos_totpos_mname
+Note: records for fasta will be in this order: sp_lg_pos_totpos_mname
 
-# this file will be used as input to MapComp
+### `all_species_w_totpos.fasta` is the analysis input for MapComp ###
