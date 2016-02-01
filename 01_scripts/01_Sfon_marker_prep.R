@@ -1,5 +1,5 @@
-# Developed by Thierry Gosselin and Ben Sutherland from the Bernatchez lab at U. Laval, Quebec
-# Prepares S. fontinalis data from the full .fasta off all individuals used in genetic mapping
+# by Thierry Gosselin and Ben Sutherland from the Bernatchez lab at U. Laval, Quebec
+# prepares one individual sequence per loci for S. fontinalis data from STACKS output
 
 # rm(list=ls())
 

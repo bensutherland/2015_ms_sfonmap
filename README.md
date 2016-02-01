@@ -63,3 +63,5 @@ awk -F, 'BEGIN{OFS="";} {print $1"_"$2"_"$3"_"$4"_"$5"\n"$6}' 02_raw_data/*_totp
 Note: records for fasta will be in this order: sp_lg_pos_totpos_mname
 
 ### `all_species_w_totpos.fasta` is the analysis input for MapComp ###
+# so copy this file to MapComp repo
+# as './02_raw_data/markers.fasta'

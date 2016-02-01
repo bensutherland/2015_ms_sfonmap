@@ -1,16 +1,16 @@
-# Developed by Ben Sutherland from the Bernatchez lab at U. Laval, Quebec
-# After collecting all of the supplemental files, format all datafiles to be used by MapComp
-# Due to custom nature and difference in supplied data, this script works per species
+# Format all datafiles to be used by MapComp
+# by Ben Sutherland at the Bernatchez lab at U. Laval, Quebec
+# Note: before starting, collect all input files as per 00_resources/data_sources.md 
 
 # rm(list=ls())
 
 library(tidyr)
 
 # Set working directory to the main directory of the repo
+# setwd("/Users/wayne/Desktop/01_raw_materials")
 
 # For each species, we want the following information (in order):
 # >Species  LG  LGcM  totposcM  mname sequence
-
 
 #
 ###### Otsh (Brieuc et al 2014) #####
@@ -159,40 +159,103 @@ write.table(Cclu_merged_sorted_clean, file = "Cclu_merged_sorted_clean.csv", row
 # end Cclu
 
 ###### Sfon (current study) #######
+# note: still need to create for loop as to not do everything twice
+
 #import seq file
 Sfon_seq <- read.table(file = "sutherland_etal-GBS_loci_complete.txt", sep = "\t",
                        header = T, col.names = c("Marker", "Sequence"))
 dim(Sfon_seq) # 6448 markers
 
-#import map file
-Sfon_map <- read.table(file = "sutherland_etal_LG_P2.tsv",
-                       sep = "\t", header = T)[,c(1,4,2)]
-colnames(Sfon_map) = c("Marker","cM", "LG")
-dim(Sfon_map) #3826 markers
-head(Sfon_map)
+#import sex-specific maps
+Sfon_v3.4_female <- read.table(file = "Sfon_female_map_v4.3.csv",
+                                  sep = ",", header = T)
+head(Sfon_v3.4_female)
+colnames(Sfon_v3.4_female) = c("LG","Marker", "cM")
 
 # minor cleaning
-Sfon_map$LG <- as.numeric(gsub(pattern = "LG", replacement="", x = Sfon_map$LG))
-head(Sfon_map)
+Sfon_v3.4_female$LG <- as.numeric(gsub(pattern = "LG", replacement="", x = Sfon_v3.4_female$LG))
+head(Sfon_v3.4_female)
 
 # merge seq and map file
-Sfon_merged <- merge(Sfon_map, Sfon_seq, by = "Marker")
-dim(Sfon_merged) #3715 markers
+Sfon_female_merged <- merge(Sfon_v3.4_female, Sfon_seq, by = "Marker")
 
+
+
+#female
 # sort by chromosome then by map distance
-Sfon_merged_sorted <- Sfon_merged[with(Sfon_merged, order(Sfon_merged$LG, Sfon_merged$cM)), ]
-Sfon_merged_sorted_clean <- Sfon_merged_sorted
-
+Sfon_female_merged_sorted <- Sfon_female_merged[with(Sfon_female_merged, order(Sfon_female_merged$LG, Sfon_female_merged$cM)), ]
+Sfon_female_merged_sorted_clean <- Sfon_female_merged_sorted
 # add extra needed columns
-Sfon_merged_sorted_clean$species <- rep(x = ">Sfon", times = length(Sfon_merged_sorted_clean[,1]))
-Sfon_merged_sorted_clean$cM.null <- rep(x = 0, times = length(Sfon_merged_sorted_clean[,1]))
-head(Sfon_merged_sorted_clean)
+Sfon_female_merged_sorted_clean$species <- rep(x = ">Sfon", times = length(Sfon_female_merged_sorted_clean[,1]))
+Sfon_female_merged_sorted_clean$cM.null <- rep(x = 0, times = length(Sfon_female_merged_sorted_clean[,1]))
+head(Sfon_female_merged_sorted_clean)
 
 # reorder the columns:
-Sfon_merged_sorted_clean <- Sfon_merged_sorted_clean[,c(5,3,2,6,1,4)]
+Sfon_female_merged_sorted_clean <- Sfon_female_merged_sorted_clean[,c(5,2,3,6,1,4)]
+head(Sfon_female_merged_sorted_clean)
 
 # write out:
-write.table(Sfon_merged_sorted_clean, file = "Sfon_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
+write.table(Sfon_female_merged_sorted_clean, file = "Sfon_female_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
+
+
+# other maps (to do male and female maps separately)
+# Sfon_female_map <- read.table(file = "sutherland_etal_LG_P2.tsv",
+#                        sep = "\t", header = T)[,c(1,4,2)]
+# Sfon_male_map <- read.table(file = "sutherland_etal_LG_P1.tsv",
+#                               sep = "\t", header = T)[,c(1,4,2)]
+# colnames(Sfon_female_map) = c("Marker","cM", "LG")
+# colnames(Sfon_male_map) = c("Marker","cM", "LG")
+# dim(Sfon_male_map) #3505 markers
+# dim(Sfon_female_map) #3826 markers
+# head(Sfon_male_map, n = 3)
+# head(Sfon_female_map, n = 3)
+
+# # minor cleaning
+# Sfon_male_map$LG <- as.numeric(gsub(pattern = "LG", replacement="", x = Sfon_male_map$LG))
+# head(Sfon_male_map)
+# 
+# Sfon_female_map$LG <- as.numeric(gsub(pattern = "LG", replacement="", x = Sfon_female_map$LG))
+# head(Sfon_female_map)
+
+
+# # merge seq and map file
+# Sfon_male_merged <- merge(Sfon_male_map, Sfon_seq, by = "Marker")
+# Sfon_female_merged <- merge(Sfon_female_map, Sfon_seq, by = "Marker")
+# dim(Sfon_male_merged)
+# dim(Sfon_female_merged)
+# head(Sfon_male_merged, n = 3)
+# 
+# # sort by chromosome then by map distance
+# Sfon_male_merged_sorted <- Sfon_male_merged[with(Sfon_male_merged, order(Sfon_male_merged$LG, Sfon_male_merged$cM)), ]
+# Sfon_male_merged_sorted_clean <- Sfon_male_merged_sorted
+# # add extra needed columns
+# Sfon_male_merged_sorted_clean$species <- rep(x = ">Sfon.male", times = length(Sfon_male_merged_sorted_clean[,1]))
+# Sfon_male_merged_sorted_clean$cM.null <- rep(x = 0, times = length(Sfon_male_merged_sorted_clean[,1]))
+# head(Sfon_male_merged_sorted_clean)
+# 
+# # reorder the columns:
+# Sfon_male_merged_sorted_clean <- Sfon_male_merged_sorted_clean[,c(5,3,2,6,1,4)]
+# 
+# # write out:
+# write.table(Sfon_male_merged_sorted_clean, file = "Sfon_male_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
+# 
+# #female
+# # sort by chromosome then by map distance
+# Sfon_female_merged_sorted <- Sfon_female_merged[with(Sfon_female_merged, order(Sfon_female_merged$LG, Sfon_female_merged$cM)), ]
+# Sfon_female_merged_sorted_clean <- Sfon_female_merged_sorted
+# # add extra needed columns
+# Sfon_female_merged_sorted_clean$species <- rep(x = ">Sfon.female", times = length(Sfon_female_merged_sorted_clean[,1]))
+# Sfon_female_merged_sorted_clean$cM.null <- rep(x = 0, times = length(Sfon_female_merged_sorted_clean[,1]))
+# head(Sfon_female_merged_sorted_clean)
+# 
+# # reorder the columns:
+# Sfon_female_merged_sorted_clean <- Sfon_female_merged_sorted_clean[,c(5,3,2,6,1,4)]
+# 
+# # write out:
+# write.table(Sfon_female_merged_sorted_clean, file = "Sfon_female_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
+# 
+
+
 
 # end Sfon
 
@@ -258,8 +321,9 @@ tail(Oner3_seq)
 dim(Oner3_seq) #6262 markers
 str(Oner3_seq)
 
-# note there is a So09 and So09.5
-
+# note there is a So09 and So09.5; this doesn't fit with script, so name it different and place at end
+Oner3_seq$LG <- gsub(pattern = "9.5", replace = as.numeric(max(Oner3_seq$LG) + 1), Oner3_seq$LG)
+Oner3_seq$LG <- as.numeric(Oner3_seq$LG)
 Oner3_seq$species <- rep(x = ">Oner3", times = length(Oner3_seq[,1]))
 Oner3_seq$cM.null <- rep(x = 0, times = length(Oner3_seq[,1]))
 head(Oner3_seq)
@@ -363,3 +427,5 @@ Omyk2_merged_sorted$cM.null <- rep(x = 0, times = length(Omyk2_merged_sorted[,1]
 Omyk2_merged_sorted <- Omyk2_merged_sorted[,c(5,2,3,6,1,4)]
 
 write.table(Omyk2_merged_sorted, file = "Omyk2_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
+
+# Next get totpos using 02_LG_totpos.R
