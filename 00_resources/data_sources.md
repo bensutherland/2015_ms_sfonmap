@@ -16,6 +16,12 @@ seq file = kodama_etal2014-coho_non-dup_RAD_lociS1.1.csv
 
 
 2. O. tshawytscha (Brieuc et al. 2014)
+From article supplementary files, download File S2.
+http://www.g3journal.org/content/4/3/447/suppl/DC1
+
+
+
+
 map file = brieuc_etal2014-consensus_haploid_mapS2.1.csv
 seq file = brieuc_etal2014-non-dup_lociS1.1.csv
 
