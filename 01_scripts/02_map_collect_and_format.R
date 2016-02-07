@@ -1,6 +1,7 @@
-# Format all datafiles to be used by MapComp
-# by Ben Sutherland at the Bernatchez lab at U. Laval, Quebec
-# Note: before starting, collect all input files as per 00_resources/data_sources.md 
+# Format all datafiles to be used by salmonid comparison for MapComp paper 
+# 2016-02-07
+# Ben Sutherland - Bernatchez lab, U. Laval, Quebec
+# Note: before starting, download all input files as stated in 00_resources/data_sources.md 
 
 # rm(list=ls())
 
@@ -10,7 +11,7 @@ library(tidyr)
 # setwd("/Users/wayne/Desktop/01_raw_materials")
 
 # For each species, we want the following information (in order):
-# >Species  LG  LGcM  totposcM  mname sequence
+## >Species  LG  LGcM  totposcM  mname sequence
 
 #
 ###### Otsh (Brieuc et al 2014) #####
@@ -160,7 +161,8 @@ write.table(Cclu_merged_sorted_clean, file = "Cclu_merged_sorted_clean.csv", row
 
 ###### Sfon (current study) #######
 # note: still need to create for loop as to not do everything twice
-
+###NOTE: # 
+# All in one: additional_fileS2_sfon_female_map.csv
 #import seq file
 Sfon_seq <- read.table(file = "sutherland_etal-GBS_loci_complete.txt", sep = "\t",
                        header = T, col.names = c("Marker", "Sequence"))
@@ -169,6 +171,7 @@ dim(Sfon_seq) # 6448 markers
 #import sex-specific maps
 Sfon_v3.4_female <- read.table(file = "Sfon_female_map_v4.3.csv",
                                   sep = ",", header = T)
+dim(Sfon_v3.4_female)
 head(Sfon_v3.4_female)
 colnames(Sfon_v3.4_female) = c("LG","Marker", "cM")
 
@@ -178,8 +181,6 @@ head(Sfon_v3.4_female)
 
 # merge seq and map file
 Sfon_female_merged <- merge(Sfon_v3.4_female, Sfon_seq, by = "Marker")
-
-
 
 #female
 # sort by chromosome then by map distance
@@ -194,9 +195,12 @@ head(Sfon_female_merged_sorted_clean)
 Sfon_female_merged_sorted_clean <- Sfon_female_merged_sorted_clean[,c(5,2,3,6,1,4)]
 head(Sfon_female_merged_sorted_clean)
 
-# write out:
-write.table(Sfon_female_merged_sorted_clean, file = "Sfon_female_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
+# write out supplemental file:
+Sfon_map_supplemental_file <- Sfon_female_merged_sorted_clean[,c(1,2,3,5,6)]
+write.table(Sfon_map_supplemental_file, file = "Sfon_v4.3_female_map.csv", row.names = F, col.names = T, sep = ",", quote=F)
 
+# write out file for MapComp:
+write.table(Sfon_female_merged_sorted_clean, file = "Sfon_female_merged_sorted_clean.csv", row.names = F, col.names = T, sep = ",", quote=F)
 
 # other maps (to do male and female maps separately)
 # Sfon_female_map <- read.table(file = "sutherland_etal_LG_P2.tsv",
@@ -337,7 +341,7 @@ write.table(Oner3_seq, file = "Oner3_merged_sorted_clean.csv", row.names = F, co
 
 ###### Eluc (Rondeau et al 2014) ####
 # import seq and map file
-Eluc_merged_sorted <- read.table(file = "rondeau_etal2014-mname_LG_cM_and_seq.csv", sep = ",",
+Eluc_merged_sorted <- read.table(file = "rondeau_etal2014_map_and_seq.csv", sep = ",",
                           header = F, col.names = c("mname","LG","cM","seq"))
 dim(Eluc_merged_sorted) #526 records
 head(Eluc_merged_sorted)
@@ -361,7 +365,7 @@ Eluc_merged_sorted <- Eluc_merged_sorted[,c(5,2,3,6,1,4)]
 write.table(Eluc_merged_sorted, file = "Eluc_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
 
 ###### Ssal (Lien et al 2011) ####
-
+# input file: lien_etal2011_raw_data.csv (still need to remove lines with empty record and replace underscore with hyphen)
 # import seq and map file
 Ssal_merged_sorted <- read.table(file = "lien_etal2011-addfile1-prepped_for_R.csv", sep = ",",
                                  header = F, col.names = c("mname","LG","cM","seq"))
@@ -382,15 +386,16 @@ Ssal_merged_sorted <- Ssal_merged_sorted[,c(5,2,3,6,1,4)]
 write.table(Ssal_merged_sorted, file = "Ssal_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
 
 ###### Omyk (Palti et al 2015) ####
-Omyk_cM <- read.csv(file = "palti_etal2015-mname_and_cM.csv", header = F)
+# read in map and seq files
+Omyk_map <- read.csv(file = "palti_etal2015_map.csv", header = F)
 dim(Omyk_cM) #1167 markers
-colnames(Omyk_cM) = c("mname", "cM")
+colnames(Omyk_cM) = c("LG", "mname", "cM")
 head(Omyk_cM)
 
-Omyk_chrom <- read.csv(file = "palti_etal2015-02_LGs_2-point_longform.csv", header = F)[,c(2,1)]
-dim(Omyk_chrom) #5851 markers
+Omyk_seq <- read.csv(file = "palti_etal2015_seq.csv", header = F)
+dim(Omyk_seq) #5613 markers
 colnames(Omyk_chrom) = c("mname","LG")
-head(Omyk_chrom)
+head(Omyk_seq)
 Omyk_chrom$LG <- 
   as.numeric(gsub(pattern = "Chr", replacement="", x = Omyk_chrom$LG, perl = T))
 head(Omyk_chrom)

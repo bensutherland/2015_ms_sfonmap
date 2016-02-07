@@ -103,7 +103,7 @@ Map file: palti_etal2015_map.csv
 
 #######
 
-4. Chum Salmon O. keta (Waples et al. 2015) (note: still to complete documentation on data collection; specifically the sequence file)
+4. Chum Salmon O. keta (Waples et al. 2015) (note: still to complete documentation on data collection; specifically the sequence file; currently using: Map2-revised.txt)
 Go to the following website for supplemental files:
 http://onlinelibrary.wiley.com/doi/10.1111/1755-0998.12394/suppinfo
 Download:
@@ -123,7 +123,7 @@ Download:
 Map and seq file in one file: Table S1
 larson_etal2015_table_s1_male_and_female_map_info.csv
 Remove NAs and rename:
-grep -vE 'NA|reviously' larson_etal2015_table_s1_male_and_female_map_info.csv > larson_etal2015_table_s1_male_and_female_map_info_noNA.csv
+grep -vE 'NA|reviously' larson_etal2015_table_s1_male_and_female_map_info.csv > larson_etal2015_map_and_seq.csv
 
 
 6. Brook Charr S. fontinalis (Sutherland et al. present study)
@@ -135,11 +135,9 @@ additional_fileS2_sfon_female_map.csv
 Go to the following website:
 http://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-615
 Download Additional file 1 (12864_2011_3813_MOESM1_ESM.xls)
-Open and save only the records with a cM position in female map, then
-Save out sheet one 'SalmonLinkageMap2011' as lien_etal2011_raw_data.csv
-flip -u lien_etal2011_raw_data.csv
-
-Both map and seq are found in that file.
+Open and save out sheet one that contains both map position and seq as lien_etal2011_map_and_seq.csv
+Then remove PC newline character
+flip -u lien_etal2011_map_and_seq.csv
 
 
 8. Lake Whitefish C. clupeaformis (Gagnaire et al. 2013)
@@ -149,8 +147,7 @@ Download: Table S2
 mec12127-sup-0004-TableS2.xls
 
 Open in excel, delete lines up to the header, then save out as:
-gagnaire_etal2013-RAD_loci_and_map.csv
-
+gagnaire_etal2013_map_and_seq.csv
 
 
 10. E. lucius microsatellite (Rondeau et al., 2014)
@@ -159,3 +156,8 @@ http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0102089#s5
 Table S7. doi:10.1371/journal.pone.0102089.s009
 Delete the first line leaving the first line as the header, and save out the sheet as
 rondeau_etal2014_map_and_seq.csv
+
+
+Finally, move all files containing either *map* or *seq* into the 03_prepared_data/ folder
+cp 02_raw_data/01_collecting_from_websites/*map* ./03_prepared_data/
+cp 02_raw_data/01_collecting_from_websites/*seq* ./03_prepared_data/
