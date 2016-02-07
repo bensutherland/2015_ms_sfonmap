@@ -154,7 +154,8 @@ gagnaire_etal2013_map_and_seq.csv
 Go to the following website and download
 http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0102089#s5
 Table S7. doi:10.1371/journal.pone.0102089.s009
-Delete the first line leaving the first line as the header, and save out the sheet as
+Delete the first line leaving the first line as the header, 
+and Delete the other blocks of data under the first large block (should not be total of 526 records and a header), and save out the sheet as
 rondeau_etal2014_map_and_seq.csv
 
 
