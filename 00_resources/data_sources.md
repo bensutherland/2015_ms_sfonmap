@@ -2,6 +2,8 @@
 2016-02-07
 B. Sutherland (Lab Bernatchez, U. Laval)
 
+This is the first step from the README.md
+
 *Note*: Follow steps exactly to ensure compatibility with the formatting script in R.
 
 The following species will be collected for the final analysis:
@@ -159,6 +161,8 @@ and Delete the other blocks of data under the first large block (should not be t
 rondeau_etal2014_map_and_seq.csv
 
 
-Finally, move all files containing either *map* or *seq* into the 03_prepared_data/ folder
-cp 02_raw_data/01_collecting_from_websites/*map* ./03_prepared_data/
-cp 02_raw_data/01_collecting_from_websites/*seq* ./03_prepared_data/
+Finally, move all files containing either *map* or *seq* into the 02_formatting_collected_data/ folder
+cp 02_raw_data/01_collecting_from_websites/*map* ./02_raw_data/02_formatting_collected_data/
+cp 02_raw_data/01_collecting_from_websites/*seq* ./02_raw_data/02_formatting_collected_data/
+
+Now move to the next step, as described in the README.md

@@ -8,7 +8,7 @@
 library(tidyr)
 
 # Set working directory to the main directory of the repo
-# setwd("~/Documents/bernatchez/01_Sfon_projects/01_SfQTL/21_2015_ms_sfonmap/03_prepared_data")
+# setwd("~/Documents/bernatchez/01_Sfon_projects/01_SfQTL/21_2015_ms_sfonmap/02_raw_data/02_formatting_collected_data")
 
 # For each species, we want the following information (in order):
 ## >Species  LG  LGcM  totposcM  mname sequence
