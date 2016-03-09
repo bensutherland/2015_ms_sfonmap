@@ -1,5 +1,5 @@
 # Prepare data from published salmonid maps
-B Sutherland, Bernatchez Lab, 2016-03-09
+B Sutherland, Bernatchez Lab, 2016-03-09  
 *Run all commands from the main directory*
 
 ### 1. Collect raw data to be used
