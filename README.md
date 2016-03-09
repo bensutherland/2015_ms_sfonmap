@@ -8,7 +8,7 @@ B Sutherland, Bernatchez Lab, 2016-03-09
 
 ### 2. Format genetic maps to prepare for MapComp
 Change working directory in R script towards your copy of `02_raw_data/02_formatting_collected_data/`  
-**Format data in R**
+Then format data in R by using the following script:  
 
 ```
 R -q -e 'source("01_scripts/02_map_collect_and_format.R")'
