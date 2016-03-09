@@ -7,15 +7,24 @@ This is the first step from the README.md
 *Note*: Follow steps exactly to ensure compatibility with the formatting script in R.
 
 The following species will be collected for the final analysis, please cite the following papers if you use the data:
-Coho Salmon O. kisutch (Kodama et al. 2014)
-Chinook Salmon O. tshawytscha (Brieuc et al. 2014)
-Rainbow Trout O. mykiss (Palti et al. 2015)
-Chum Salmon O. keta (Waples et al. 2015)
-Sockeye Salmon O. nerka (Larson et al. 2016)
-Brook Charr S. fontinalis (Sutherland et al. current work)
-Atlantic Salmon S. salar (Lien et al. 2011)
-Lake Whitefish C. clupeaformis (Gagnaire et al. 2013)
-Northern Pike E. lucius (Rondeau et al., 2014)
+Coho Salmon *O. kisutch*  
+Kodama M, Brieuc MSO, Devlin RH, Hard JJ, Naish KA. 2014. Comparative mapping between Coho Salmon (Oncorhynchus kisutch) and three other salmonids suggests a role for chromosomal rearrangements in the retention of duplicated regions following a whole genome duplication event. G3 - Genes|Genomes|Genetics. 4:1717–1730. doi: 10.1534/g3.114.012294.  
+Chinook Salmon O. tshawytscha  
+Naish KA et al. 2013. Comparative genome mapping between Chinook Salmon (Oncorhynchus tshawytscha) and Rainbow Trout (O. mykiss) based on homologous microsatellite loci. G3 - Genes|Genomes|Genetics. 3:2281–2288. doi: 10.1534/g3.113.008003.  
+Rainbow Trout O. mykiss  
+Palti Y et al. 2015. Detection and validation of QTL affecting bacterial cold water disease resistance in Rainbow Trout using restriction-site associated DNA sequencing Wang, H, editor. PLoS ONE. 10:e0138435. doi: 10.1371/journal.pone.0138435.  
+Chum Salmon O. keta  
+Waples RK, Seeb LW, Seeb JE. 2016. Linkage mapping with paralogs exposes regions of residual tetrasomic inheritance in Chum Salmon (Oncorhynchus keta). Mol. Ecol. Resour. 16:17–28. doi: 10.1111/1755-0998.12394.  
+Sockeye Salmon O. nerka  
+Larson WA et al. 2015. Identification of Multiple QTL Hotspots in Sockeye Salmon (Oncorhynchus nerka) Using Genotyping-by-Sequencing and a Dense Linkage Map. J. Hered. doi: 10.1093/jhered/esv099.  
+Brook Charr S. fontinalis  
+Sutherland BJG et al. 2016. Novel Method for Comparing RADseq Linkage Maps Reveals Chromosome Evolution in Salmonids. doi: 10.1101/039164.  
+Atlantic Salmon S. salar  
+Lien S et al. 2011. A dense SNP-based linkage map for Atlantic Salmon (Salmo salar) reveals extended chromosome homeologies and striking differences in sex-specific recombination patterns. BMC Genomics. 12:615. doi: 10.1186/1471-2164-12-615.  
+Lake Whitefish C. clupeaformis  
+Gagnaire P-A, Normandeau E, Pavey SA, Bernatchez L. 2013. Mapping phenotypic, expression and transmission ratio distortion QTL using RAD markers in the Lake Whitefish (Coregonus clupeaformis). Mol. Ecol. 22:3036–3048. doi: 10.1111/mec.12127.  
+Northern Pike E. lucius  
+Rondeau EB et al. 2014. The genome and linkage map of the Northern Pike (Esox lucius): conserved synteny revealed between the salmonid sister group and the Neoteleostei. PLoS ONE. 9:e102089. doi: 10.1371/journal.pone.0102089.  
 
 
 1. Coho Salmon O. kisutch (Kodama et al. 2014)
