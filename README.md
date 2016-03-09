@@ -3,7 +3,7 @@ B Sutherland, Bernatchez Lab, 2016-03-09
 *Run all commands from the main directory*
 
 ### 1. Collect raw data to be used
-* Follow instructions in `00_resources/data_sources.md` to obtain the published map data used in manuscript. After following these instructions, input files should be in `02_raw_data/`  
+Follow instructions in `00_resources/data_sources.md` to obtain the published map data used in manuscript. After following these instructions, input files should be in `02_raw_data/`  
 
 
 ### 2. Format genetic maps to prepare for MapComp
