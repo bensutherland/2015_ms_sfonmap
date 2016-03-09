@@ -1,4 +1,4 @@
-# Provides the sources and steps required to collect data to input into R
+# Websites and directions to obtain raw data  
 2016-02-07
 B. Sutherland (Lab Bernatchez, U. Laval)  
 
