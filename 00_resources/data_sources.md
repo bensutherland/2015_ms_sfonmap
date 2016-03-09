@@ -6,7 +6,7 @@ This is the first step from the README.md
 
 *Note*: Follow steps exactly to ensure compatibility with the formatting script in R.
 
-The following species will be collected for the final analysis:
+The following species will be collected for the final analysis, please cite the following papers if you use the data:
 Coho Salmon O. kisutch (Kodama et al. 2014)
 Chinook Salmon O. tshawytscha (Brieuc et al. 2014)
 Rainbow Trout O. mykiss (Palti et al. 2015)
@@ -103,21 +103,15 @@ In conclusion, the data that will be used is:
 Sequence file: palti_etal2015_seq.csv
 Map file: palti_etal2015_map.csv
 
-#######
-
-4. Chum Salmon O. keta (Waples et al. 2015) (note: still to complete documentation on data collection; specifically the sequence file; currently using: Map2-revised.txt)
+4. Chum Salmon O. keta (Waples et al. 2015)
 Go to the following website for supplemental files:
 http://onlinelibrary.wiley.com/doi/10.1111/1755-0998.12394/suppinfo
 Download:
-File Appendix S3 Linkage mapping. (men12394-sup-0003-AppendixS3.zip) and decompress
-Rename and save Map2.txt: 02_raw_data/waples_etal2015_map.csv
+men12394-sup-0004-AppendixS4.zip
+then open P1_consensus.fasta, turn it into a .csv file with fasta name and fasta seq on the same line for each record. Save out as 'waples_etal2015_seq.csv'
 
-File (to be added)
-map file = waples_etal2015_map2-revised.txt 
-# seq file = waples2015_loci-P1_consensus.csv
-
-# This collection description will have to be added at a later date
-
+men12394-sup-0003-AppendixS3.zip
+then rename Map1.txt as 'waples_etal2015_map.txt'
 
 5. Sockeye Salmon O. nerka (Larson et al. 2016)
 Go to 

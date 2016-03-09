@@ -1,5 +1,5 @@
 # Format all datafiles to be used by salmonid comparison for MapComp paper 
-# 2016-02-07
+# 2016-03-09
 # Ben Sutherland - Bernatchez lab, U. Laval, Quebec
 # Note: before starting, download all input files as stated in 00_resources/data_sources.md 
 
@@ -155,30 +155,45 @@ head(Omyk_merged_sorted)
 write.table(Omyk_merged_sorted, file = "Omyk_merged_sorted_clean.csv", row.names = F, col.names = F, sep = ",")
 
 
-###### Chum (Waples et al 2015) #####
-
 # import seq file
-Oket_all <- read.csv(file = "waples_etal2015_map_and_seq.csv",
-                        header = T)[,c(2:5)]
-colnames(Oket_all) <- c("Marker", "LG", "cM", "Sequence")
-dim(Oket_all) #6119 records
-head(Oket_all)
+Oket_seq <- read.csv(file = "waples_etal2015_seq.csv",
+                        header = F)
+head(Oket_seq)
+colnames(Oket_seq) <- c("Marker","Sequence")
+
+# import map file
+Oket_map <- read.table(file = "waples_etal2015_map.txt",
+                     header = T, sep = "\t")
+head(Oket_map)
+colnames(Oket_map) <- c("LG", "Marker", "cM")
+
+dim(Oket_map) #5221 records
 
 # minor cleaning to remove '_x1' from Marker
-Oket_all$Marker <- gsub(pattern = "_x1", replacement = "", x = Oket_all$Marker)
-head(Oket_all)
+Oket_map$Marker <- gsub(pattern = "_x1", replacement = "", x = Oket_map$Marker)
+head(Oket_map)
+
+# minor cleaning to remove '>c' from Marker
+Oket_seq$Marker <- gsub(pattern = ">c", replacement = "", x = Oket_seq$Marker)
+head(Oket_seq)
 
 # merge seq and map files
-Oket_merged_sorted <- Oket_all[with(Oket_all, order(Oket_all$LG, Oket_all$cM)), ]
+Oket_merged <- merge(Oket_seq, Oket_map, by = "Marker")
+dim(Oket_merged) #5178 records
+head(Oket_merged)
+
+# sort
+Oket_merged_sorted <- Oket_merged[with(Oket_merged, order(Oket_merged$LG, Oket_merged$cM)), ]
 head(Oket_merged_sorted)
 
 # add extra needed columns
 Oket_merged_sorted_clean <- Oket_merged_sorted
-Oket_merged_sorted_clean$species <- rep(">Oket", times = length(Oket_merged_sorted$Marker))
+Oket_merged_sorted_clean$species <- rep("Oket", times = length(Oket_merged_sorted$Marker))
 Oket_merged_sorted_clean$cM.null <- rep(0, times = length(Oket_merged_sorted$Marker))
+head(Oket_merged_sorted_clean)
 
 # reorder the columns:
-Oket_merged_sorted_clean <- Oket_merged_sorted_clean[,c(5,2,3,6,1,4)]
+Oket_merged_sorted_clean <- Oket_merged_sorted_clean[,c(5,3,4,6,1,2)]
 head(Oket_merged_sorted_clean)
 
 # write out:
