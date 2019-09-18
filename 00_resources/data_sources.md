@@ -11,7 +11,7 @@ The following species will be collected for the final analysis, please cite the 
 **Coho Salmon** *O. kisutch*  
 Kodama M, Brieuc MSO, Devlin RH, Hard JJ, Naish KA. 2014. Comparative mapping between Coho Salmon (Oncorhynchus kisutch) and three other salmonids suggests a role for chromosomal rearrangements in the retention of duplicated regions following a whole genome duplication event. G3 - Genes|Genomes|Genetics. 4:1717–1730. doi: 10.1534/g3.114.012294.  
 **Chinook Salmon** *O. tshawytscha*  
-Brieuc et al. 2014. A dense linkage map for Chinook Salmon (Oncorhynchus tshawytscha) reveals variable chromosomal divergence following an ancestral whole genome duplication event. G3 - Genes|Genomes|Genetics. 4(3) pp. 447-460. ttps://doi.org/10.1534/g3.113.009316 
+Brieuc et al. 2014. A dense linkage map for Chinook Salmon (Oncorhynchus tshawytscha) reveals variable chromosomal divergence following an ancestral whole genome duplication event. G3 - Genes|Genomes|Genetics. 4(3) pp. 447-460. ttps://doi.org/10.1534/g3.113.009316       
 Naish KA et al. 2013. Comparative genome mapping between Chinook Salmon (Oncorhynchus tshawytscha) and Rainbow Trout (O. mykiss) based on homologous microsatellite loci. G3 - Genes|Genomes|Genetics. 3:2281–2288. doi: 10.1534/g3.113.008003.  
 **Rainbow Trout** *O. mykiss*  
 Palti Y et al. 2015. Detection and validation of QTL affecting bacterial cold water disease resistance in Rainbow Trout using restriction-site associated DNA sequencing Wang, H, editor. PLoS ONE. 10:e0138435. doi: 10.1371/journal.pone.0138435.  
